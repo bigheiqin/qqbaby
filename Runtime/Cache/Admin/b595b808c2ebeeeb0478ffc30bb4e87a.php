@@ -1,102 +1,117 @@
-<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE HTML>
-<html style="overflow-y:hidden;">
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="renderer" content="webkit|ie-comp|ie-stand">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-<LINK rel="Bookmark" href="/favicon.ico" >
-<LINK rel="Shortcut Icon" href="/favicon.ico" />
-<!--[if lt IE 9]>
-<script type="text/javascript" src="/Public/admin/js/html5.js"></script>
-<script type="text/javascript" src="/Public/admin/js/respond.min.js"></script>
-<script type="text/javascript" src="/Public/admin/js/PIE_IE678.js"></script>
-<![endif]-->
-<link href="/Public/admin/css/H-ui.css" rel="stylesheet" type="text/css" />
-<link href="/Public/admin/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
-<link type="text/css" rel="stylesheet" href="/Public/admin/font/font-awesome.min.css"/>
-<!--[if IE 7]>
-<link href="font/font-awesome-ie7.min.css" rel="stylesheet" type="text/css" />
-<![endif]-->
-<!--[if IE 6]>
-<script type="text/javascript" src="/Public/admin/js/DD_belatedPNG_0.0.8a-min.js" ></script>
-<script>DD_belatedPNG.fix('*');</script>
-<![endif]-->
-<title>H-ui.admin v2.1</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>欢迎登录qq宝贝后台管理系统</title>
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="/Public/admin/css/style.css">
 </head>
-<body style="overflow:hidden">
-<header class="Hui-header cl"> <a class="Hui-logo l" title="H-ui.admin v2.1" href="/">QQ宝贝后台管理系统</a> <span class="Hui-subtitle l">V1.0</span> <span class="Hui-userbox"><span class="c-white">超级管理员：admin</span> <a class="btn btn-danger radius ml-10" href="#" title="退出"><i class="icon-off"></i> 退出</a></span> <a aria-hidden="false" class="Hui-nav-toggle" id="nav-toggle" href="#"></a> </header>
-<div class="cl Hui-main">
-  <aside class="Hui-aside" style="">
-    <input runat="server" id="divScrollValue" type="hidden" value="" />
-    <div class="menu_dropdown bk_2">
-      <dl id="menu-user">
-        <dt><i class="icon-user"></i> 用户中心<b></b></dt>
-        <dd>
-          <ul>
-            <li><a _href="user-list.html" href="javascript:;">用户管理</a></li>
-            <li><a _href="user-list-del.html" href="javascript:;">删除的用户</a></li>
-            <li><a _href="user-list-black.html" href="javascript:;">黑名单</a></li>
-            <li><a _href="record-browse.html" href="javascript:void(0)">浏览记录</a></li>
-            <li><a _href="record-download.html" href="javascript:void(0)">下载记录</a></li>
-            <li><a _href="record-share.html" href="javascript:void(0)">分享记录</a></li>
-          </ul>
-        </dd>
-      </dl>
-      <dl id="menu-picture">
-        <dt><i class="icon-picture"></i> 客片管理<b></b></dt>
-        <dd>
-          <ul>
-            <li><a _href="article-class.html" href="javascript:void(0)">分类管理</a></li>
-            <li><a _href="picture-list.html" href="javascript:void(0)">图片管理</a></li>
-          </ul>
-        </dd>
-      </dl>
-      <dl id="menu-product">
-        <dt><i class="icon-beaker"></i> 产品库<b></b></dt>
-        <dd>
-          <ul>
-            <li><a _href="product-brand.html" href="javascript:void(0)">品牌管理</a></li>
-            <li><a _href="article-class.html" href="javascript:void(0)">分类管理</a></li>
-            <li><a _href="product-list.html" href="javascript:void(0)">产品管理</a></li>
-          </ul>
-        </dd>
-      </dl>
-      <dl id="menu-admin">
-        <dt><i class="icon-key"></i> 管理员管理<b></b></dt>
-        <dd>
-          <ul>
-            <li><a _href="admin-role.html" href="javascript:void(0)">角色管理</a></li>
-            <li><a _href="admin-permission.html" href="javascript:void(0)">权限管理</a></li>
-            <li><a _href="admin-list.html" href="javascript:void(0)">管理员列表</a></li>
-          </ul>
-        </dd>
-      </dl>
-    </div>
-  </aside>
-  <div class="dislpayArrow"><a class="pngfix" href="javascript:void(0);"></a></div>
-  <section class="Hui-article">
-    <div id="Hui-tabNav" class="Hui-tabNav">
-      <div class="Hui-tabNav-wp">
-        <ul id="min_title_list" class="acrossTab cl">
-          <li class="active"><span title="我的桌面" data-href="welcome.html">我的桌面</span><em></em></li>
-        </ul>
-      </div>
-      <div class="Hui-tabNav-more btn-group"><a id="js-tabNav-prev" class="btn radius btn-default btn-small" href="javascript:;"><i class="icon-step-backward"></i></a><a id="js-tabNav-next" class="btn radius btn-default btn-small" href="javascript:;"><i class="icon-step-forward"></i></a></div>
-    </div>
-    <div id="iframe_box" class="Hui-articlebox">
-      <div class="show_iframe">
-        <div style="display:none" class="loading"></div>
-        <iframe scrolling="yes" frameborder="0" src="Admin/Index/welcome"></iframe>
-      </div>
-    </div>
-  </section>
+<body>
+<!-- 头部 -->
+<header class="page_header clearfix">
+	<h1 class="float_l header_title">qq宝贝后台管理系统</h1>
+	<div class="float_r">
+		<span>超级管理员：admin</span>
+		<a href="javascript:0;" class="btn btn-danger login_exit"><span class="glyphicon glyphicon-off"></span> 退出</a>
+	</div>
+</header>
+<!-- 主体 -->
+<div class="page_main">
+	<!-- 侧边栏 -->
+	<aside class="side_nav">
+		<dl>
+			<dt><span class="glyphicon glyphicon-picture"></span> 客片管理<i></i></dt>
+			<dd>
+				<ul>
+					<li><a _href="Admin/Index/welcome" href="javascript:void(0)">分类管理</a></li>
+					<li><a _href="Admin/Index/welcome" href="javascript:void(0)">客片列表</a></li>
+				</ul>
+			</dd>
+		</dl>
+	</aside>
+	<section class="article_main">
+		<!-- tab选项卡 -->
+		<header class="main_top_nav">
+			<ul class="main_top_nav_list clearfix">
+				<li class="main_top_nav_item active">
+					<span title="我的桌面" data-href="welcome.html">我的桌面</span>
+					<em></em>
+				</li>
+			</ul>
+		</header>
+
+		<!-- 窗体 -->
+		<div class="iframe_box">
+			<!-- iframe_item -->
+			<div class="show_iframe index_iframe clearfix">
+				<div style="display:none" class="loading"></div>
+				<iframe scrolling="yes" frameborder="0" src="Admin/Index/welcome" class="iframe_item"></iframe>
+			</div>
+			<!-- ... -->
+		</div>
+	</section>
 </div>
-<script type="text/javascript" src="/Public/admin/js/jquery.min.js"></script>
-<script type="text/javascript" src="/Public/admin/js/Validform_v5.3.2_min.js"></script> 
-<script type="text/javascript" src="/Public/admin/layer/layer.min.js"></script>
-<script type="text/javascript" src="/Public/admin/js/H-ui.js"></script>
-<script type="text/javascript" src="/Public/admin/js/H-ui.admin.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+$(function(){
+	var bool_ = true;	// 条件判断，是否存在 iframe
+	// 创建新的 iframe链接窗体
+	$('.side_nav dl a').on('click', function(){
+		// 获取点击链接、名称
+		let $url = $(this).attr('_href');
+		let $tab_name = $(this).text();
+
+		// 获取所有iframe
+		let $array_ = $('.iframe_box iframe ');
+		for(let i=0; i<$array_.length; i++) {
+			let SRC_active = $($array_[i]).attr('src');
+			if(SRC_active === $url) {
+				console.log('此处已经跳出循环了！');
+				bool_ = false
+				break;
+			}
+		}
+		// return bool_;	// 是否终止
+		// alert('此处已经不执行了！')
+		let addIframe_con = `<div class="show_iframe clearfix">
+								<div style="display:none" class="loading"></div>
+								<iframe scrolling="yes" frameborder="0" src="`+ $url +`" class="iframe_item"></iframe>
+							</div>`;
+		$('.show_iframe').hide().parent().append(addIframe_con);
+		// 此处插入tab
+		let addTab_dom = `<li class="main_top_nav_item active">
+							<span title="`+ $tab_name +`" data-href="`+  $url +`">`+ $tab_name +`</span>
+							<i></i>
+							<em></em>
+						</li>`
+		$('.main_top_nav_item ').removeClass('active').parent().append(addTab_dom);
+	});
+
+	// 事件委托，实现动态添加的tab切换
+	$('.main_top_nav_list').on('click', 'li.main_top_nav_item', function(event){	// on(事件，目标元素，执行函数)
+		// 每次点击获取所有iframe
+		let $array_ = $('.iframe_box .show_iframe');
+		let $tab = $('.main_top_nav_list').children('li');
+		let $index = $(event.currentTarget).index();  // 获取索引
+		
+		$tab.removeClass('active');	 // 去除所有tab元素的active类
+		$(event.currentTarget).addClass('active');  // 为当前选择的tab添加active
+		$array_.hide();	 // 隐藏掉所有iframe
+		$array_[$index].style.display = 'block';  // 显示对应 iframe
+		
+		//  删除
+		let $target = event.target;	 // 获取事件源
+		($target.localName === 'i')?(
+			$array_[$index].remove(),
+			$tab[$index].remove(),
+			$($tab[$index-1]).addClass('active'),
+			$array_[($index-1)].style.display = 'block'
+		):('');
+	});
+});
+</script>
 </body>
 </html>

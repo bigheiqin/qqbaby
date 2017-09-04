@@ -1,0 +1,97 @@
+@charset "utf-8";
+html, body { width: 100%;  height: 100%; margin: 0; padding: 0; }
+ul, li { list-style-type: none; padding-left: 0; }
+
+.float_l { float: left }
+.float_r { float: right }
+.overflow_h { overflow: hidden }
+.text_c{ text-align: center; }
+.text_l{ text-align: left; }
+.text_r{ text-align: right; }
+.margin_auto { margin: auto; }
+.margin0 { margin: 0; }
+.padding0 { padding: 0; }
+.border0 { border: 0 !important; }
+.img_auto {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+}
+
+
+
+/* iframe 头部导航 */
+.iframe_header .iframe_top_nav {
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    background-color: #F5F5F5;
+    padding-left: 20px;
+    border-bottom: 1px solid #E5E5E5;
+    
+}
+.iframe_header .iframe_top_nav a.btn-success{ padding: 4px 7px; margin-top: 8px; margin-right: 15px;}
+
+/* 列表 */
+/* ===头部=== */
+.iframe_main {
+    padding: 15px 0;
+    margin: auto 15px;
+}
+.iframe_main_list .hd_box {
+    height: 45px;
+    line-height: 45px;
+    padding: 0 6px;
+    background-color: #f5fafe;
+    border: solid 1px #ddd;
+    border-bottom: 0;
+}
+.iframe_main_list .hd_box .btn  { padding: 4px 8px; margin-top: -2px; }
+.table_data  .table_hd > tr.table_row { background-color: #f5fafe; }
+
+
+/* ===内容=== */
+.iframe_main_list .table_item {
+    text-align: center;
+    vertical-align: middle;
+}
+.iframe_main_list .table_item > span.btn-success { padding: 0 6px; }
+/* 模糊框 */
+.modal.fade .modal-dialog.modal-sm { top: 25%; }
+.modal-sm .modal-content {
+    border: 6px solid rgb(126, 126, 126);
+}
+.modal-sm .modal-content > .modal-header {
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    padding: 10px;
+    padding-top: 0;
+    border-bottom: 1px solid #D5D5D5;
+    background-color: #EBEBEB;
+    font-size: 14px;
+    color: #333;
+}
+.modal-sm .modal-header > .modal-title { line-height: inherit; font-size: 14px;}
+.modal-sm .modal-header .close { margin-top: 6px; }
+.modal-open .modal-backdrop { background-color: #7e7e7e; }
+.modal-sm .modal-footer { border-top: 0; }
+.modal-sm .modal-footer .btn {
+    padding: 5px 20px;
+    border-radius: 0;
+}
+.modal-sm .modal-content .tip_box {
+    padding: 15px;
+    text-align: center;
+}
+.modal-sm .modal-content .tip_box > span {
+    font-size: 30px;
+    margin-right: 10px;
+    color: #2c6290;
+}
+/* 操作按钮 */
+.td_control > span {
+    cursor: pointer;
+    text-align: center;
+    padding:  2px;
+}
