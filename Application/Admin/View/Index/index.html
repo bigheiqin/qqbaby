@@ -25,8 +25,23 @@
 			<dt><span class="glyphicon glyphicon-picture"></span> 客片管理<i></i></dt>
 			<dd>
 				<ul>
-					<li><a _href="Admin/Index/welcome" href="javascript:void(0)">分类管理</a></li>
-					<li><a _href="Admin/Index/welcome" href="javascript:void(0)">客片列表</a></li>
+					<li><a _href="Admin/Index/edit" href="javascript:void(0)">添加客片</a></li>
+					<li><a _href="Admin/Index/pictureList" href="javascript:void(0)">客片列表</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl>
+			<dt><span class="glyphicon glyphicon-picture"></span> 首页广告位管理<i></i></dt>
+			<dd>
+				<ul>
+					<li><a _href="#" href="javascript:void(0)">首屏顶部</a></li>
+					<li><a _href="#" href="javascript:void(0)">最新活动</a></li>
+					<li><a _href="#" href="javascript:void(0)">婴儿作品</a></li>
+					<li><a _href="#" href="javascript:void(0)">宝宝作品</a></li>
+					<li><a _href="#" href="javascript:void(0)">儿童作品</a></li>
+					<li><a _href="#" href="javascript:void(0)">亲子作品</a></li>
+					<li><a _href="#" href="javascript:void(0)">我们的团队</a></li>
+					<li><a _href="#" href="javascript:void(0)">场馆主题</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -36,7 +51,7 @@
 		<header class="main_top_nav">
 			<ul class="main_top_nav_list clearfix">
 				<li class="main_top_nav_item active">
-					<span title="我的桌面" data-href="welcome.html">我的桌面</span>
+					<span title="我的桌面" data-href="Admin/Index/welcome">我的桌面</span>
 					<em></em>
 				</li>
 			</ul>
@@ -49,7 +64,7 @@
 				<div style="display:none" class="loading"></div>
 				<iframe scrolling="yes" frameborder="0" src="Admin/Index/welcome" class="iframe_item"></iframe>
 			</div>
-			<!-- ... -->
+			<!-- more... -->
 		</div>
 	</section>
 </div>
@@ -57,15 +72,20 @@
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 $(function(){
-	var bool_ = true;	// 条件判断，是否存在 iframe
+	// 折叠
+	$('.side_nav dt').click(function(){
+		$(this).next('dd').toggle();
+	});
+
 	// 创建新的 iframe链接窗体
 	$('.side_nav dl a').on('click', function(){
+		let bool_ = true;	// 条件判断，是否存在 iframe
 		// 获取点击链接、名称
 		let $url = $(this).attr('_href');
 		let $tab_name = $(this).text();
 
 		// 获取所有iframe
-		let $array_ = $('.iframe_box iframe ');
+		let $array_ = $('.iframe_box .iframe_item ');
 		for(let i=0; i<$array_.length; i++) {
 			let SRC_active = $($array_[i]).attr('src');
 			if(SRC_active === $url) {
@@ -74,20 +94,22 @@ $(function(){
 				break;
 			}
 		}
-		// return bool_;	// 是否终止
-		// alert('此处已经不执行了！')
-		let addIframe_con = `<div class="show_iframe clearfix">
-								<div style="display:none" class="loading"></div>
-								<iframe scrolling="yes" frameborder="0" src="`+ $url +`" class="iframe_item"></iframe>
-							</div>`;
-		$('.show_iframe').hide().parent().append(addIframe_con);
-		// 此处插入tab
-		let addTab_dom = `<li class="main_top_nav_item active">
-							<span title="`+ $tab_name +`" data-href="`+  $url +`">`+ $tab_name +`</span>
-							<i></i>
-							<em></em>
-						</li>`
-		$('.main_top_nav_item ').removeClass('active').parent().append(addTab_dom);
+		// 是否终止【不添加新的iframe、不添加tab选项】
+		if(bool_ === true){
+			let addIframe_con = `<div class="show_iframe clearfix">
+									<div style="display:none" class="loading"></div>
+									<iframe scrolling="yes" frameborder="0" src="`+ $url +`" class="iframe_item"></iframe>
+								</div>`;
+			$('.show_iframe').hide().parent().append(addIframe_con);
+			// 此处插入tab
+			let addTab_dom = `<li class="main_top_nav_item active">
+								<span title="`+ $tab_name +`" data-href="`+  $url +`">`+ $tab_name +`</span>
+								<i></i>
+								<em></em>
+							</li>`;
+			$('.main_top_nav_item ').removeClass('active').parent().append(addTab_dom);
+		}
+		
 	});
 
 	// 事件委托，实现动态添加的tab切换

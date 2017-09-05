@@ -15,4 +15,9 @@ class IndexController extends Controller {
     public function pictureList(){
         $this->display();
     }
+
+    // 客片编辑或发布
+    public function edit(){
+        $this->display();
+    }
 }

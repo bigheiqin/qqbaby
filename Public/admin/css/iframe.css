@@ -95,3 +95,17 @@ ul, li { list-style-type: none; padding-left: 0; }
     text-align: center;
     padding:  2px;
 }
+
+
+/* === welcome_iframe欢迎模块 === */
+.welcome_iframe .table_row .table_item:first-child {
+    width: 230px;
+}
+
+
+/* === edit_iframe发布(编辑)模块 === */
+.edit_iframe .table_row .table_item:first-child{
+    width: 110px;
+}
+.edit_iframe .table_item > .form-group { margin-bottom: 0; }
+.edit_iframe select.form-control { width: auto; }
