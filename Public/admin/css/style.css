@@ -92,6 +92,7 @@ dl, dt, dd { margin: 0; }
     transition-duration: 0.3s;
     transition-property: all;
 }
+.side_nav dl dd { display: none; }
 .side_nav dl dd a {
     display: block;
     line-height: 32px;

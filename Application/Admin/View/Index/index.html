@@ -25,8 +25,8 @@
 			<dt><span class="glyphicon glyphicon-picture"></span> 客片管理<i></i></dt>
 			<dd>
 				<ul>
-					<li><a _href="Admin/Index/edit" href="javascript:void(0)">添加客片</a></li>
-					<li><a _href="Admin/Index/pictureList" href="javascript:void(0)">客片列表</a></li>
+					<li><a _href="{:U('Photo/addCase')}" href="javascript:void(0)">添加客片</a></li>
+					<li><a _href="{:U('caseList')}" href="javascript:void(0)">客片列表</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -34,14 +34,14 @@
 			<dt><span class="glyphicon glyphicon-picture"></span> 首页广告位管理<i></i></dt>
 			<dd>
 				<ul>
-					<li><a _href="#" href="javascript:void(0)">首屏顶部</a></li>
-					<li><a _href="#" href="javascript:void(0)">最新活动</a></li>
-					<li><a _href="#" href="javascript:void(0)">婴儿作品</a></li>
-					<li><a _href="#" href="javascript:void(0)">宝宝作品</a></li>
-					<li><a _href="#" href="javascript:void(0)">儿童作品</a></li>
-					<li><a _href="#" href="javascript:void(0)">亲子作品</a></li>
-					<li><a _href="#" href="javascript:void(0)">我们的团队</a></li>
-					<li><a _href="#" href="javascript:void(0)">场馆主题</a></li>
+					<li><a _href="{:U('Photo/topBanner')}" href="javascript:void(0)">首屏顶部</a></li>
+					<li><a _href="{:U('Photo/newBanner')}" href="javascript:void(0)">最新活动</a></li>
+					<li><a _href="{:U('Photo/infantBanner')}" href="javascript:void(0)">婴儿作品</a></li>
+					<li><a _href="{:U('Photo/babayBanner')}" href="javascript:void(0)">宝宝作品</a></li>
+					<li><a _href="{:U('Photo/childrenBanner')}" href="javascript:void(0)">儿童作品</a></li>
+					<li><a _href="{:U('Photo/familyBanner')}" href="javascript:void(0)">亲子作品</a></li>
+					<li><a _href="{:U('Photo/teamBanner')}" href="javascript:void(0)">我们的团队</a></li>
+					<li><a _href="{:U('Photo/venueBanner')}" href="javascript:void(0)">场馆主题</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -51,7 +51,7 @@
 		<header class="main_top_nav">
 			<ul class="main_top_nav_list clearfix">
 				<li class="main_top_nav_item active">
-					<span title="我的桌面" data-href="Admin/Index/welcome">我的桌面</span>
+					<span title="我的桌面" data-href="{:U('welcome')}">我的桌面</span>
 					<em></em>
 				</li>
 			</ul>
@@ -62,7 +62,7 @@
 			<!-- iframe_item -->
 			<div class="show_iframe index_iframe clearfix">
 				<div style="display:none" class="loading"></div>
-				<iframe scrolling="yes" frameborder="0" src="Admin/Index/welcome" class="iframe_item"></iframe>
+				<iframe scrolling="yes" frameborder="0" src="{:U('welcome')}" class="iframe_item"></iframe>
 			</div>
 			<!-- more... -->
 		</div>

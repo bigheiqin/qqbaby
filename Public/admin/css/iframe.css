@@ -103,9 +103,21 @@ ul, li { list-style-type: none; padding-left: 0; }
 }
 
 
-/* === edit_iframe发布(编辑)模块 === */
-.edit_iframe .table_row .table_item:first-child{
+/* === addCase_iframe发布(编辑)模块 === */
+.edit_iframe .src_img_link { cursor: pointer; } 
+.edit_iframe .src_img_link img { width: 375px; }
+.edit_iframe .table_row td:first-child{
     width: 110px;
+    font-size: 14px;
 }
 .edit_iframe .table_item > .form-group { margin-bottom: 0; }
 .edit_iframe select.form-control { width: auto; }
+
+.edit_iframe .edit_box { position: relative; }
+
+/* === banner_iframe广告模块 === */
+.banner_iframe .tip_box > span {
+    font-size: 26px;
+    vertical-align: bottom;
+    margin-right: 4px;
+}

@@ -12,12 +12,7 @@ class IndexController extends Controller {
     }
 
     // 客片列表
-    public function pictureList(){
-        $this->display();
-    }
-
-    // 客片编辑或发布
-    public function edit(){
+    public function caseList(){
         $this->display();
     }
 }

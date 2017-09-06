@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>编辑客片</title>
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="__PUBLIC_Admin__css/iframe.css">
+<link rel="stylesheet" href="/Public/admin/css/iframe.css">
 </head>
 <body>
 <header class="iframe_header">
@@ -20,7 +20,7 @@
 </header>
 <div class="iframe_main edit_iframe">
     <div class="iframe_table">
-        <form action="__URL__/edit" enctype="multipart/form-data" method="post" >
+        <form action="/index.php/Admin/Photo/edit" enctype="multipart/form-data" method="post" >
 		<table class="table_data table table-bordered">
 			<thead class="table_hd">
 				<tr class="table_row">
@@ -55,7 +55,7 @@
                 <tr class="table_row">
 					<td class="table_item">缩略图</td>
 					<td class="table_item">
-                        <a class="src_img_link"><img src="__PUBLIC_Admin__images/default-thumbnail.png" id="src_img" alt="" data-srcImgBool="false"></a>
+                        <a class="src_img_link"><img src="/Public/admin/images/default-thumbnail.png" id="src_img" alt="" data-srcImgBool="false"></a>
                         <input type="file" name="photo" />
                         <button type="button" id="set_srcImg_btn" class="btn btn-default">取消图片</button>
                     </td>
