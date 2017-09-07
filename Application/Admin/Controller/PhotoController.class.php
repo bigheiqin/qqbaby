@@ -14,13 +14,13 @@ class PhotoController extends Controller {
     // upload
     public function addCase_upload(){
         $upload = new \Think\Upload();// 实例化上传类
-        $upload->maxSize   =     3145728 ;// 设置附件上传大小
+        $upload->maxSize   =     9999999999 ;// 设置附件上传大小
         $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
         $upload->rootPath  =     './Public/Uploads/'; // 设置附件上传根目录
         $upload->savePath  =     'case_pic/'; // 设置附件上传（子）目录
         // 上传文件 
-        $info   =   $upload->upload();
-        var_dump( $info);
+        $info =  $upload->upload();
+        show_bug( $_POST['type_id']);
     }
 
     // ### 广告位添加

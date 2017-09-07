@@ -104,8 +104,7 @@ ul, li { list-style-type: none; padding-left: 0; }
 
 
 /* === addCase_iframe发布(编辑)模块 === */
-.edit_iframe .src_img_link { cursor: pointer; } 
-.edit_iframe .src_img_link img { width: 375px; }
+.edit_iframe #src_img { width: 187px; height: 267px; }
 .edit_iframe .table_row td:first-child{
     width: 110px;
     font-size: 14px;
@@ -114,6 +113,18 @@ ul, li { list-style-type: none; padding-left: 0; }
 .edit_iframe select.form-control { width: auto; }
 
 .edit_iframe .edit_box { position: relative; }
+/* 预览容器 */
+#file-list {
+    position: relative;
+    width: auto;
+    padding: 20px;
+    margin: 20px;
+}
+#file-list img {
+    display: block;
+    max-width: 100%;
+    margin: auto;
+}
 
 /* === banner_iframe广告模块 === */
 .banner_iframe .tip_box > span {

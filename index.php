@@ -9,6 +9,15 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
+// 调试输出函数
+function show_bug($msg){
+    echo "<pre style='color:red'>";
+    var_dump($msg);
+    echo "</pre>";
+}
+
+
+
 // 应用入口文件
 
 // 检测PHP环境

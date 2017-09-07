@@ -6,7 +6,6 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>编辑客片</title>
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="__PUBLIC_Admin__css/webuploader.css">
 <link rel="stylesheet" href="__PUBLIC_Admin__css/iframe.css">
 </head>
 <body>
@@ -21,7 +20,7 @@
 </header>
 <div class="iframe_main edit_iframe">
     <div class="iframe_table">
-        <form action="{:U('addCase_upload')}" enctype="multipart/form-data" method="post" >
+		<form action="">
 		<table class="table_data table table-bordered">
 			<thead class="table_hd">
 				<tr class="table_row">
@@ -33,11 +32,12 @@
 				<tr class="table_row">
 					<td class="table_item">选择所属栏目</td>
 					<td class="table_item">
-                        <select class="form-control">
-                            <option>婴儿照</option>
-                            <option>宝宝照</option>
-                            <option>儿童照</option>
-                            <option>亲子照</option>
+                        <select class="form-control" name="type_id">
+                            <option value="1">婴儿照</option>
+                            <option value="2">宝宝照</option>
+                            <option value="3">儿童照</option>
+							<option value="4">亲子照</option>
+							<option value="5">活动</option>
                         </select>
                     </td>
 				</tr>
@@ -45,120 +45,133 @@
 					<td class="table_item">标题</td>
 					<td class="table_item">
                         <div class="form-group">
-                            <input type="text" class="form-control"  placeholder="标题">
+                            <input type="text" name="case_titel" class="form-control"  placeholder="标题">
                         </div>
                     </td>
                 </tr>
-                <!-- <tr class="table_row">
-					<td class="table_item">副标题</td>
-					<td class="table_item">192.168.1.1</td>
-                </tr> -->
                 <tr class="table_row">
 					<td class="table_item">封面图</td>
 					<td class="table_item">
-                        <label class="src_img_link" for="upload_img">
+                        <!-- <label class="src_img_link" for="upload_img" id="src_img_test"> -->
 							<img src="__PUBLIC_Admin__images/default-thumbnail.png" id="src_img" alt="">
-						</label>
-                        <input type="file" name="photo" id="upload_img" style="display: none;" />
-						<input type="submit" id="upload_btn" value="上传" >
+						<!-- </label> -->
+						<button type="button" id="src_img_btn">选择封面图</button>
                     </td>
 				</tr>
 			</tbody>
 		</table>
-        </form>
+		<div class="tip_box alert alert-danger"><span class="glyphicon glyphicon-info-sign" style="font-size: 30px; vertical-align: bottom;"></span> 多图上传选定后，如需更改，请重新刷新页面！</div>
+		<div class="multiple_upload">
+			<button id="browse">选择文件</button>
+			<button id="start_upload" type="button">开始上传</button>
+			<div id="file-list">
+			</div>
+		</div>
+		</form>
 	</div>
 </div>
 
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="http://cdn.staticfile.org/webuploader/0.1.0/webuploader.min.js"></script>
+<script	src="__PUBLIC_Admin__js/plupload.full.min.js"></script>
 <script>
 $(function(){
-	
-    // 封面上传图片
-	var EventUtil = {
-		addHandler: function(element,type,handler) {
-			if(element.addEventListener) {
-				element.addEventListener(type,handler,false);
-			}else if(element.attachEvent) {
-				element.attachEvent("on"+type,handler);
-			}else {
-				element["on" +type] = handler;
-			}
-		}
-	};
-	var btn = document.getElementById("upload_img");
-	var pic = document.getElementById("src_img");
-	function getBase64Image(img) {
-		var canvas = document.createElement("canvas");
-		canvas.width = img.width;
-		canvas.height = img.height;
-
-		var ctx = canvas.getContext("2d");
-		ctx.drawImage(img, 0, 0, img.width, img.height);
-		var ext = img.src.substring(img.src.lastIndexOf(".")+1).toLowerCase();
-		var dataURL = canvas.toDataURL("image/"+ext);
-		return dataURL;
-	}
-	var ua = navigator.userAgent.toLowerCase();
-	EventUtil.addHandler(btn,'change',function(){
-	var file = document.getElementById("upload_img");
-	
-	var ext=file.value.substring(file.value.lastIndexOf(".")+1).toLowerCase();
-	
-		// gif在IE浏览器暂时无法显示
-		if(ext!='png'&&ext!='jpg'&&ext!='jpeg'){
-			alert("图片的格式必须为png或者jpg或者jpeg格式！"); 
-			return;
-		}
-		if(/msie ([^;]+)/.test(ua)) {
-			var lowIE10 = RegExp["$1"]*1;
-			if(lowIE10 == 6){
-				// IE6浏览器设置img的src为本地路径可以直接显示图片
-				file.select();
-				// 在file控件下获取焦点情况下 document.selection.createRange() 将会拒绝访问，所以我们要失去下焦点。
-				file.blur();
-
-				var reallocalpath = document.selection.createRange().text;
-				pic.src = reallocalpath;
-			}else if(lowIE10 < 10){
-				// IE7~9 IE10+按照html5的标准去处理
-				file.select();
-				// 在file控件下获取焦点情况下 document.selection.createRange() 将会拒绝访问，所以我们要失去下焦点。
-				file.blur();
-
-				var reallocalpath = document.selection.createRange().text;
-				// 非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现
-				pic.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\"" + reallocalpath + "\")";
-				// 设置img的src为base64编码的透明图片 取消显示浏览器默认图片
-				pic.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
-			}else if(lowIE10 >= 10) {
-				html5Reader(file);
-			} 
-		}else {
-		html5Reader(file);
+	// 单图上传
+	var oneUploader = new plupload.Uploader({
+		browse_button : 'src_img_btn',
+		url : '{:U("addCase_upload")}',
+		silverlight_xap_url : '__PUBLIC_Admin__js/Moxie.xap',
+		filters: {
+		  mime_types : [ //只允许上传图片文件
+		    { title : "图片文件", extensions : "jpg,gif,png" }
+		  ]
+		},
+		multi_selection: false,	// 对话框单选
+		container: 'src_img',
+		multipart_params: {
+			name: 'xxxxx1',
+			type_id: 'xxxxxx2'
 		}
 	});
-		
-	function html5Reader(file) {
-		var fileObj = file.files[0],
-		img = document.getElementById("src_img");
-		// URL.createObjectURL  safari不支持
-		img.src = URL.createObjectURL(fileObj);
-		img.onload =function() {
-			var data = getBase64Image(img);
-			// console.log(data);  // 打印出base64编码
+	oneUploader.init();
+	// 单图
+	oneUploader.bind('FilesAdded',function(uploader,files){
+		if(files.length > 1){
+			uploader.removeFile(files[0]);
+		} else {
+			previewImage(files[0], function(imgsrc){
+				$('#src_img').attr('src', imgsrc)
+			}, 1)
 		}
-		/*
-		var file = file.files[0];
-		var reader = new FileReader();
-		reader.readAsDataURL(file);
-		reader.onload = function(e){
-			var pic = document.getElementById("img");
-			pic.src=this.result;
-		}*/
-	}
+	});
+	// 所以单图上传完毕后，触发多图上传
+	oneUploader.bind('UploadComplete', function(oneUploader, files){
+		uploader.start()
+	});
 	
+	// 多图上传
+	var uploader = new plupload.Uploader({ //实例化一个plupload上传对象
+		browse_button : 'browse',
+		url : '{:U("addCase_upload")}',
+		flash_swf_url : '__PUBLIC_Admin__js/Moxie.swf',
+		silverlight_xap_url : '__PUBLIC_Admin__js/Moxie.xap',
+		filters: {
+		  mime_types : [ //只允许上传图片文件
+		    { title : "图片文件", extensions : "jpg,gif,png" }
+		  ]
+		}
+	});
+	uploader.init(); //初始化
+
+	// 绑定文件添加进队列事件
+	uploader.bind('FilesAdded',function(uploader,files){
+		for(var i = 0, len = files.length; i<len; i++){
+			!function(i){
+				previewImage(files[i],function(imgsrc){
+					$('#file-list').append('<img src="'+ imgsrc +'" />');
+				})
+		    }(i);
+		}
+	});
+	// 所以单图上传完毕后，触发多图上传
+	uploader.bind('UploadComplete', function(uploader, files){
+		console.log("顺序", files)
+	});
+
+	//plupload中为我们提供了mOxie对象
+	//有关mOxie的介绍和说明请看：https://github.com/moxiecode/moxie/wiki/API
+	//如果你不想了解那么多的话，那就照抄本示例的代码来得到预览的图片吧
+	function previewImage(file,callback, typeId) {
+		//file为plupload事件监听函数参数中的file对象,callback为预览图片准备完成的回调函数
+		if(!file || !/image\//.test(file.type)) return; //确保文件是图片
+		if(file.type=='image/gif') {
+			//gif使用FileReader进行预览,因为mOxie.Image只支持jpg和png
+			var fr = new mOxie.FileReader();
+			fr.onload = function(){
+				callback(fr.result);
+				fr.destroy();
+				fr = null;
+			}
+			fr.readAsDataURL(file.getSource());
+		} else {
+			var preloader = new mOxie.Image();
+			preloader.onload = function() {
+				if(typeId == 1) {
+					preloader.downsize( 300, 300 )
+				}
+				// preloader.downsize( 300, 300 );//先压缩一下要预览的图片,宽300，高300
+				var imgsrc = preloader.type=='image/jpeg' ? preloader.getAsDataURL('image/jpeg',80) : preloader.getAsDataURL(); //得到图片src,实质为一个base64编码的数据
+				callback && callback(imgsrc); //callback传入的参数为预览图片的url
+				preloader.destroy();
+				preloader = null;
+			};
+			preloader.load( file.getSource() );
+		}	
+	}
+
+	$('#start_upload').click(function(){
+		oneUploader.start()
+	});
 });
 
 </script>
