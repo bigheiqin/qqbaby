@@ -19,14 +19,13 @@
 </header>
 <div class="iframe_main welcome_iframe">
 	<div class="iframe_table">
-		<table class="table_data table table-bordered">
+		<!-- <table class="table_data table table-bordered">
 			<thead class="table_hd">
 				<tr class="table_row">
 					<th class="table_item" colspan="2">服务器信息</th>
 				</tr>
 			</thead>
 			<tbody>
-				<!-- 此处遍历 -->
 				<tr class="table_row">
 					<td class="table_item">服务器计算机名</td>
 					<td class="table_item">http://127.0.0.1/</td>
@@ -120,7 +119,8 @@
 					<td class="table_item">NETWORK SERVICE</td>
 				</tr>	
 			</tbody>
-		</table>
+		</table> -->
+		<?php if(is_array($data)): foreach($data as $key=>$vo): ?><img src="/Public/<?php echo ($vo['pic_url']); ?>" /><?php endforeach; endif; ?>
 	</div>
 </div>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>

@@ -20,11 +20,11 @@
 </header>
 <div class="iframe_main edit_iframe">
     <div class="iframe_table">
-		<form action="">
+		<form action="" method="POST" id="form_ajax">
 		<table class="table_data table table-bordered">
 			<thead class="table_hd">
 				<tr class="table_row">
-					<th class="table_item" colspan="2">添加发布新的客片</th>
+					<th class="table_item" colspan="2">添加新的客片</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -62,7 +62,7 @@
 		</table>
 		<div class="tip_box alert alert-danger"><span class="glyphicon glyphicon-info-sign" style="font-size: 30px; vertical-align: bottom;"></span> 多图上传选定后，如需更改，请重新刷新页面！</div>
 		<div class="multiple_upload">
-			<button id="browse">选择文件</button>
+			<button id="browse" type="button">选择文件</button>
 			<button id="start_upload" type="button">开始上传</button>
 			<div id="file-list">
 			</div>
@@ -77,9 +77,10 @@
 <script>
 $(function(){
 	// 单图上传
+	
 	var oneUploader = new plupload.Uploader({
 		browse_button : 'src_img_btn',
-		url : '{:U("addCase_upload")}',
+		url : '{:U("addCover_upload")}',
 		silverlight_xap_url : '__PUBLIC_Admin__js/Moxie.xap',
 		filters: {
 		  mime_types : [ //只允许上传图片文件
@@ -87,11 +88,7 @@ $(function(){
 		  ]
 		},
 		multi_selection: false,	// 对话框单选
-		container: 'src_img',
-		multipart_params: {
-			name: 'xxxxx1',
-			type_id: 'xxxxxx2'
-		}
+		file_data_name: 'case_main'
 	});
 	oneUploader.init();
 	// 单图
@@ -104,22 +101,39 @@ $(function(){
 			}, 1)
 		}
 	});
+	// 此处用来存放返回的主表id
+	// var $back_case_id;
+	// oneUploader.bind('FileUploaded', function(uploader, file, responseObject){
+	// 	// console.log('某一队列上传完成后返回的服务器信息', responseObject.response)
+	// 	// # responseObject.response 将会返回模板的大量字符，所以请不要做多于打印，且请在返回值后添加 exit()
+	// 	// # 可以尝试关闭debug调试模式看看。
+	// 	$back_case_id = responseObject.response
+	// 	console.log('test测试111111')
+	// });
 	// 所以单图上传完毕后，触发多图上传
 	oneUploader.bind('UploadComplete', function(oneUploader, files){
+		// console.log('test测试22222')
+		// uploader.setOption({
+		// 	multipart_params: {
+		// 		'case_id': $back_case_id,	// 传递主表id
+		// 		'type_id': $('select[name="type_id"]').val()	// 传递所属栏目
+		// 	}
+		// });
 		uploader.start()
 	});
 	
 	// 多图上传
 	var uploader = new plupload.Uploader({ //实例化一个plupload上传对象
 		browse_button : 'browse',
-		url : '{:U("addCase_upload")}',
+		url: '{:U("addDetail_upload")}',
 		flash_swf_url : '__PUBLIC_Admin__js/Moxie.swf',
 		silverlight_xap_url : '__PUBLIC_Admin__js/Moxie.xap',
 		filters: {
 		  mime_types : [ //只允许上传图片文件
 		    { title : "图片文件", extensions : "jpg,gif,png" }
 		  ]
-		}
+		},
+		file_data_name: 'case_img'
 	});
 	uploader.init(); //初始化
 
@@ -127,17 +141,12 @@ $(function(){
 	uploader.bind('FilesAdded',function(uploader,files){
 		for(var i = 0, len = files.length; i<len; i++){
 			!function(i){
-				previewImage(files[i],function(imgsrc){
+				previewImage(files[i], function(imgsrc){
 					$('#file-list').append('<img src="'+ imgsrc +'" />');
 				})
 		    }(i);
 		}
 	});
-	// 所以单图上传完毕后，触发多图上传
-	uploader.bind('UploadComplete', function(uploader, files){
-		console.log("顺序", files)
-	});
-
 	//plupload中为我们提供了mOxie对象
 	//有关mOxie的介绍和说明请看：https://github.com/moxiecode/moxie/wiki/API
 	//如果你不想了解那么多的话，那就照抄本示例的代码来得到预览的图片吧
@@ -160,7 +169,7 @@ $(function(){
 					preloader.downsize( 300, 300 )
 				}
 				// preloader.downsize( 300, 300 );//先压缩一下要预览的图片,宽300，高300
-				var imgsrc = preloader.type=='image/jpeg' ? preloader.getAsDataURL('image/jpeg',80) : preloader.getAsDataURL(); //得到图片src,实质为一个base64编码的数据
+				var imgsrc = preloader.type=='image/jpeg' ? preloader.getAsDataURL('image/jpeg', 80) : preloader.getAsDataURL(); //得到图片src,实质为一个base64编码的数据
 				callback && callback(imgsrc); //callback传入的参数为预览图片的url
 				preloader.destroy();
 				preloader = null;
@@ -170,6 +179,12 @@ $(function(){
 	}
 
 	$('#start_upload').click(function(){
+		oneUploader.setOption({
+			multipart_params: {
+				'type_id': $('select[name="type_id"]').val(),
+				'case_titel': $('input[name="case_titel"]').val()
+			}
+		});
 		oneUploader.start()
 	});
 });
